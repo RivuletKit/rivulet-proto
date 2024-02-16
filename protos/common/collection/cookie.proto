@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.rivuletkit.common.collection;
+
+message Cookie {
+    string domain = 1; // The domain for which this cookie is valid.
+    string path = 2; // The path associated with the Cookie.
+    optional string name = 3; // This is the name of the Cookie.
+    optional string value = 4; // The value of the Cookie.
+    optional bool host_only = 5; // True if the cookie is a host-only cookie. (i.e. a request's URL domain must exactly match the domain of the cookie).
+    optional bool http_only = 6; // Indicates if this cookie is HTTP Only. (if True, the cookie is inaccessible to client-side scripts)
+    optional string expires = 7; // When the cookie expires.
+    optional string max_age = 8;
+    optional bool secure = 9; // Indicates if the 'secure' flag is set on the Cookie, meaning that it is transmitted over secure connections only. (typically HTTPS)
+    optional bool session = 10; // True if the cookie is a session cookie.
+    repeated string extensions = 11; // Custom attributes for a cookie go here, such as the [Priority Field](https://code.google.com/p/chromium/issues/detail?id=232693)
+}

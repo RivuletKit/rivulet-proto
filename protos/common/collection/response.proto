@@ -1,7 +1,19 @@
 syntax = "proto3";
 
 package com.rivuletkit.common.collection;
+import "protos/common/collection/request.proto";
+import "protos/common/collection/header.proto";
+import "protos/common/collection/cookie.proto";
 
 message Response {
-
+    optional string id = 1; // A unique, user defined identifier that can be used to refer to this response from requests.
+    optional Request original_request = 2;
+    optional int32 response_time = 3; // The time taken by the request to complete. If a number, the unit is milliseconds. If the response is manually created, this can be set to `null`.
+    // optional bytes timings = 4; // reserve 
+    repeated Header headers = 5;
+    repeated Cookie cookies = 6;
+    optional string body = 7; // The raw text of the response.
+    optional bytes body_raw = 8; // The raw bytes of the response.
+    optional string status = 9; // The response status, e.g: '200 OK'
+    optional int32 code = 10; // The numerical response code, example: 200, 201, 404, etc.
 }

@@ -18,7 +18,7 @@ message Collection {
 
 message CollectionInfo {
     string name = 1; // A collection's friendly name is defined by this field.
-    optional string schema = 2; // 由于目前校验完整性暂时不实现，故此参数暂设定为可选
+    optional string schema = 2; // since the verification integrity is not currently implemented, this parameter is temporarily set to optional.
     optional string description = 3;
     optional string version = 4; 
     optional string _postman_id = 5; // Every collection is identified by the unique value of this field.
@@ -53,6 +53,6 @@ message CollectionItem {
 message CollectionEvent {
     string listen = 1; // Can be set to `test` or `prerequest` for test scripts or pre-request scripts respectively.
     optional string id = 2; // A unique identifier for the enclosing event.
-    // optional Script script = 3; // 保留属性，暂不实现 
+    // optional Script script = 3; // reserved attributes, not implemented yet
     optional bool disabled = 4; // Indicates whether the event is disabled. If absent, the event is assumed to be enabled.
 }
