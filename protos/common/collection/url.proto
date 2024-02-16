@@ -2,6 +2,22 @@ syntax = "proto3";
 
 package com.rivuletkit.common.collection;
 
+// import "protos/common/collection/variable.proto";
+
 message URL {
-    
+    optional string raw = 1; // The string representation of the request URL, including the protocol, host, path, hash, query parameter(s) and path variable(s).
+    optional string protocol = 2; // The protocol associated with the request, E.g: 'http'
+    optional string host = 3; // The host for the URL, E.g: api.yourdomain.com. Can be stored as a string or as an array of strings.
+    optional string path = 4; // The complete path of the current url.
+    optional int32 port = 5; // The port number present in this URL. An empty value implies 80/443 depending on whether the protocol field contains http/https.
+    repeated QueryParam querys = 6; // An array of QueryParams, which is basically the query string part of the URL, parsed into separate variables.
+    optional string hash = 7; // Contains the URL fragment (if any). Usually this is not transmitted over the network, but it could be useful to store this in some cases.
+    // repeated Variable variables = 8; // reserve
+}
+
+message QueryParam {
+    optional string key = 1;
+    optional string value = 2;
+    optional bool disabled = 3; // If set to true, the current query parameter will not be sent with the request.
+    optional string description = 4;
 }

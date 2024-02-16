@@ -3,6 +3,7 @@ import "protos/common/collection/auth.proto";
 import "protos/common/collection/protocol_profile_behavior.proto";
 import "protos/common/collection/request.proto";
 import "protos/common/collection/response.proto";
+import "protos/common/collection/variable.proto";
 
 package com.rivuletkit.common.collection;
 
@@ -10,7 +11,7 @@ message Collection {
     CollectionInfo info = 1;
     repeated CollectionItem items = 2;
     repeated CollectionEvent events = 3;
-    repeated CollectionVariable variables = 4;
+    repeated Variable variables = 4;
     optional Auth auth = 5;
     optional ProtocolProfileBehavior protocolProfileBehavior = 6;
 }
@@ -33,7 +34,7 @@ message CollectionItem {
     // conmmon
     CollectionItemType type = 1; 
     repeated CollectionEvent events = 2;
-    repeated CollectionVariable variables = 3;
+    repeated Variable variables = 3;
     optional string name = 4;
     optional string description = 5;
     optional ProtocolProfileBehavior protocolProfileBehavior = 6;
@@ -54,15 +55,4 @@ message CollectionEvent {
     optional string id = 2; // A unique identifier for the enclosing event.
     // optional Script script = 3; // 保留属性，暂不实现 
     optional bool disabled = 4; // Indicates whether the event is disabled. If absent, the event is assumed to be enabled.
-}
-
-message CollectionVariable {
-    optional string id = 1; // A variable ID is a unique user-defined value that identifies the variable within a collection. In traditional terms, this would be a variable name.
-    optional string key = 2; // A variable key is a human friendly value that identifies the variable within a collection. In traditional terms, this would be a variable name.
-    optional string value = 3; // The value that a variable holds in this collection. Ultimately, the variables will be replaced by this value, when say running a set of requests from a collection.
-    optional string type = 4; // A variable may have multiple types. This field specifies the type of the variable.
-    optional string name = 5; // Variable name
-    optional string description = 6;
-    optional bool system = 7; // boolean default false
-    optional bool disabled = 8; // boolean default false
 }
