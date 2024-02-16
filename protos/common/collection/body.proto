@@ -2,6 +2,43 @@ syntax = "proto3";
 
 package com.rivuletkit.common.collection;
 
+enum BodyMode {
+    RAW = 0; // raw
+    URLENCODED = 1; // urlencoded
+    FORMDATA = 2; // formdata
+    FILE = 3; // file
+    GRAPHQL = 4; //  GraphQL
+}
+
 message Body {
-    
+    optional BodyMode mode = 1; // The type of data associated with this request in this field.
+    optional string rew = 2;
+    // optional string graphql = 3; // reserve
+    optional UrlEncodedParameter urlencoded = 4;
+    optional FormParameter formdata = 5;
+    optional BodyFile file = 6;
+    // optional string options = 7; // reserve
+    optional bool disabled = 8; // When set to true, prevents request body from being sent.
+}
+
+message UrlEncodedParameter {
+    string key = 1;
+    optional string value = 2;
+    optional bool disabled = 3;
+    optional string description = 4;
+}
+
+message FormParameter {
+    string key = 1;
+    optional string value = 2;
+    optional bool disabled = 3; // When set to true, prevents this form data entity from being sent.
+    optional string type = 4;
+    optional string content_type = 5; // Override Content-Type header of this form data entity.
+    optional string description = 6;
+}
+
+message BodyFile {
+    optional string src = 1;
+    optional string content = 2;
+    optional bytes raw = 3; 
 }
