@@ -3,5 +3,22 @@ syntax = "proto3";
 package com.rivuletkit.common.collection;
 
 message Auth {
+    string type = 1; // apikey awsv4 basic bearer digest edgegrid hawk noauth oauth1 oauth2 ntlm
+    optional bool noauth = 2; // reserve
+    repeated AuthItem apikey = 3; // The attributes for API Key Authentication.
+    repeated AuthItem awsv4 = 4; // The attributes for [AWS Auth](http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html)
+    repeated AuthItem basic = 5; // The attributes for [Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)
+    repeated AuthItem bearer = 6; // The helper attributes for [Bearer Token Authentication](https://tools.ietf.org/html/rfc6750)
+    repeated AuthItem digest = 7; // The attributes for [Digest Authentication](https://en.wikipedia.org/wiki/Digest_access_authentication)
+    repeated AuthItem edgegrid = 8; // The attributes for [Akamai EdgeGrid Authentication](https://developer.akamai.com/legacy/introduction/Client_Auth.html)
+    repeated AuthItem hawk = 9; // The attributes for [Hawk Authentication](https://github.com/hueniverse/hawk)
+    repeated AuthItem ntlm = 10; // The attributes for [NTLM Authentication](https://msdn.microsoft.com/en-us/library/cc237488.aspx)
+    repeated AuthItem oauth1 = 11; // The attributes for [OAuth1](https://oauth.net/1/)
+    repeated AuthItem oauth2 = 12; // Helper attributes for [OAuth2](https://oauth.net/2/)
+}
 
+message AuthItem {
+    string key = 1;
+    string value = 2;
+    string type = 3;
 }
