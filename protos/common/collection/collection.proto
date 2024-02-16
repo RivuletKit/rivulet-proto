@@ -4,7 +4,7 @@ import "protos/common/collection/protocol_profile_behavior.proto";
 import "protos/common/collection/request.proto";
 import "protos/common/collection/response.proto";
 
-package collection;
+package com.rivuletkit.common.collection;
 
 message Collection {
     CollectionInfo info = 1;
