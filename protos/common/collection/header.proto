@@ -3,5 +3,8 @@ syntax = "proto3";
 package com.rivuletkit.common.collection;
 
 message Header {
-    
+    string key = 1; // This holds the LHS of the HTTP Header, e.g `Content-Type` or `X-Custom-Header`
+    string value = 2; // The value (or the RHS) of the Header is stored in this field.
+    optional bool disabled = 3; // If set to true, the current header will not be sent with requests.
+    optional string descriotion = 4;
 }
