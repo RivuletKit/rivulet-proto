@@ -2,6 +2,21 @@ syntax = "proto3";
 
 package com.rivuletkit.common.collection;
 
-message Request {
+import "protos/common/collection/url.proto";
+import "protos/common/collection/auth.proto";
+import "protos/common/collection/proxy.proto";
+import "protos/common/collection/certificate.proto";
+import "protos/common/collection/header.proto";
+import "protos/common/collection/body.proto";
 
+// A request represents an HTTP request. If a string, the string is assumed to be the request URL and the method is assumed to be 'GET'.
+message Request {
+    optional URL url = 1;
+    optional Auth auth = 2;
+    optional ProxyConfig proxy = 3; // Using the Proxy, you can configure your custom proxy into the postman for particular url match.
+    optional Certificate certificate = 4; // A representation of an ssl certificate.
+    optional string method = 5; // GET PUT POST PATCH DELETE COPY HEAD OPTIONS LINK UNLINK PURGE LOCK UNLOCK PROPFIND VIEW
+    repeated Header headers = 6; // A representation for a list of headers.
+    optional Body body = 7; // This field contains the data usually contained in the request body.
+    optional string description = 8;
 }
