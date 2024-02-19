@@ -11,11 +11,11 @@ enum BodyMode {
 }
 
 message Body {
-    optional BodyMode mode = 1; // The type of data associated with this request in this field.
+    BodyMode mode = 1; // The type of data associated with this request in this field.
     optional string raw = 2;
     // optional string graphql = 3; // reserve
-    optional UrlEncodedParameter urlencoded = 4;
-    optional FormParameter formdata = 5;
+    repeated UrlEncodedParameter urlencoded = 4;
+    repeated FormParameter formdata = 5;
     optional BodyFile file = 6;
     // optional string options = 7; // reserve
     optional bool disabled = 8; // When set to true, prevents request body from being sent.
